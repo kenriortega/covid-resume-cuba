@@ -1,53 +1,46 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import NumericResumeValue from '../components/NumericResumeValue'
+import TheTable from '../components/TheTable'
+import { updateAt, resume, world_countries } from '../data/latest.json'
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Resume Covid19 Cuba </title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Resume Covid19 from <a href="https://covid19cubadata.github.io/#cuba">covid19cubadata!</a>
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+          Resume
+          <code className={styles.code}>{updateAt}</code>
         </p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+          {resume.map(({ name, value }) => (
+            <span className={styles.card} key={name}>
+              <h3>{name}</h3>
+              <p>
+                <NumericResumeValue>
+                  {value}
+                </NumericResumeValue>
+              </p>
+            </span>
+          ))}
         </div>
+
+        <p className={styles.description}>
+          World Resume
+          <code className={styles.code}>{updateAt}</code>
+        </p>
+        {/* make a table */}
+        <TheTable records={world_countries} />
       </main>
 
       <footer className={styles.footer}>

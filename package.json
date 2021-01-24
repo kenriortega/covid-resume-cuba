@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "download-today-status": "node scripts/get-covid19cuba-daily.js"
   },
   "dependencies": {
     "fs-extra": "^9.1.0",

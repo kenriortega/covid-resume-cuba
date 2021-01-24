@@ -1,58 +1,64 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import NumericResumeValue from '../components/NumericResumeValue'
 import TheTable from '../components/TheTable'
 import { updateAt, resume, world_countries } from '../data/latest.json'
+import Footer from '../components/Footer'
+import Share from '../components/Share'
+import SchemeColorSwitcher from '../components/SchemeColorSwitcher'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Resume Covid19 Cuba </title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <>
+      <div className={styles.container}>
+        <Head>
+          <title>Resumen del covid en CUBA </title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <SchemeColorSwitcher />
+        <main className={styles.main}>
+          <h1 className={styles.title}>
+            Resumen COVID-19 en CUBA
+          </h1>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Resume Covid19 from <a href="https://covid19cubadata.github.io/#cuba">covid19cubadata!</a>
-        </h1>
+          <p className={styles.description}>
+            Última actualización <span className={styles.description}>{updateAt} </span>
+            fuente: <span className={styles.description}><a href="https://covid19cubadata.github.io/#cuba">covid19cubadata!</a></span>
+          </p>
 
-        <p className={styles.description}>
-          Resume
-          <code className={styles.code}>{updateAt}</code>
-        </p>
+          <div className={styles.grid}>
 
-        <div className={styles.grid}>
-          {resume.map(({ name, value }) => (
-            <span className={styles.card} key={name}>
-              <h3>{name}</h3>
-              <p>
-                <NumericResumeValue>
-                  {value}
-                </NumericResumeValue>
-              </p>
-            </span>
-          ))}
-        </div>
+            {resume.map(({ name, value }) => (
+              <span className={styles.card} key={name}>
+                <header>
+                  <Image
+                    className={styles.cardImage}
+                    src='/diagnostic.png'
+                    alt='Vacunas distribuidas en España'
+                    width={300}
+                    height={200}
+                    priority
+                  />
+                </header>
+                <h3>{name}</h3>
+                <p>
+                  <NumericResumeValue>
+                    {value}
+                  </NumericResumeValue>
+                </p>
+              </span>
+            ))}
+          </div>
 
-        <p className={styles.description}>
-          World Resume
-          <code className={styles.code}>{updateAt}</code>
-        </p>
-        {/* make a table */}
-        <TheTable records={world_countries} />
-      </main>
+          <p className={styles.description}>Resumen mundial</p>
+          {/* make a table */}
+          <TheTable records={world_countries} />
+        </main>
+      </div>
+      <Share />
+      <Footer />
+    </>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
   )
 }

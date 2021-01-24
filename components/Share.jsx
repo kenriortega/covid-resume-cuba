@@ -4,7 +4,7 @@ export default function Share() {
     const params = new URLSearchParams({
         url: 'https://covid-vacuna.app',
         text:
-            '¡Sigue el progreso de la vacunación contra el COVID19 en esta web creada por @midudev!\n\n'
+            '¡Sigue el resumen del estado del covid en #cuba. \n\n Esta web esta inspirada en https://covid-vacuna.app \n\n desarrollada por @midudev \n\n'
     })
 
     const url = `https://twitter.com/share?${params}`

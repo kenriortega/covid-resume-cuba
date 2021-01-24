@@ -1,6 +1,7 @@
 import { useTable, usePagination, useSortBy } from 'react-table'
 import { useMemo } from 'react'
 import { toDigit } from './NumericResumeValue'
+import styles from '../styles/Table.module.css'
 export default function TheTable({ records }) {
 
 
@@ -46,15 +47,6 @@ export default function TheTable({ records }) {
         []
     )
 
-    // const tableInstance = useTable({ columns, data })
-
-    // const {
-    //     getTableProps,
-    //     getTableBodyProps,
-    //     headerGroups,
-    //     rows,
-    //     prepareRow,
-    // } = tableInstance
     const {
         getTableProps,
         getTableBodyProps,
@@ -84,8 +76,8 @@ export default function TheTable({ records }) {
     )
 
     return (
-        <>
-            <table {...getTableProps()}>
+        <div className={styles.container}>
+            <table className={styles.table} {...getTableProps()}>
                 <thead>
                     {headerGroups.map(headerGroup => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
@@ -116,10 +108,7 @@ export default function TheTable({ records }) {
                     })}
                 </tbody>
             </table>
-            {/* 
-        Pagination can be built however you'd like. 
-        This is just a very basic UI implementation:
-      */}
+
             <div className="pagination">
                 <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
                     {'<<'}
@@ -164,7 +153,7 @@ export default function TheTable({ records }) {
                     ))}
                 </select>
             </div>
-        </>
+        </div>
 
     )
 }

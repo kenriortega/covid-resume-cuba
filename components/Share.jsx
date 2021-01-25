@@ -4,7 +4,7 @@ export default function Share() {
     const params = new URLSearchParams({
         url: 'https://covid-resume-cuba.vercel.app',
         text:
-            '¡Sigue el resumen del estado del covid en cuba. https://covid-resume-cuba.vercel.app \n\n Esta web esta inspirada en covid-vacuna \n\n desarrollada por @midudev \n\n'
+            '¡Sigue el resumen del estado del covid en cuba.\n\n Esta web esta inspirada en covid-vacuna \n\n desarrollada por @midudev\n\n'
     })
 
     const url = `https://twitter.com/share?${params}`

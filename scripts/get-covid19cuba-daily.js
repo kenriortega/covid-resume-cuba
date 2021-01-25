@@ -9,10 +9,10 @@ const getResumeDailyCovid19Cuba = async () => {
         const data = await resp.json()
 
         // Extract resume data
-        const { all: { updated, resume, world_countries } } = data
+        const { all: { updated, resume, world_countries, affected_provinces } } = data
 
         return {
-            updated, resume, world_countries
+            updated, resume, world_countries, affected_provinces
         }
     } catch (err) {
         return new Error(`Error was catch: ${err.message}`)
@@ -23,15 +23,16 @@ const getResumeDailyCovid19Cuba = async () => {
 
     ; (async () => {
         try {
-            const { updated, resume, world_countries } = await getResumeDailyCovid19Cuba()
+            const { updated, resume, world_countries, affected_provinces } = await getResumeDailyCovid19Cuba()
 
             const updatedParsered = updated.replace("/", "-").replace("/", "-")
-            const [diagnosticados, activos, recuperados, evacuados, fallecidos, ...restOfElementes] = resume
+            const [diagnosticados, activos, recuperados, evacuados, fallecidos, diagnosticadosNuevos, ...restOfElementes] = resume
 
             const dataToWrite = {
                 updateAt: updatedParsered,
-                resume: [diagnosticados, activos, recuperados, evacuados, fallecidos],
+                resume: [diagnosticados, activos, recuperados, evacuados, fallecidos, diagnosticadosNuevos],
                 extendResume: restOfElementes,
+                affected_provinces,
                 world_countries
             }
             await fs.writeJson(`./data/latest.json`, dataToWrite)

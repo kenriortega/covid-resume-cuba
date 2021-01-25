@@ -2,7 +2,7 @@ import styles from '../styles/Share.module.css'
 
 export default function Share() {
     const params = new URLSearchParams({
-        url: 'https://covid-vacuna.app',
+        url: 'https://covid-resume-cuba.vercel.app',
         text:
             '¡Sigue el resumen del estado del covid en #cuba. \n\n Esta web esta inspirada en https://covid-vacuna.app \n\n desarrollada por @midudev \n\n'
     })

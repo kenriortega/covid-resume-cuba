@@ -56,7 +56,7 @@ export default function Home() {
           <TheTable records={world_countries} />
         </main>
       </div>
-      <Share />
+      {/* <Share /> */}
       <Footer />
     </>
 

@@ -1,12 +1,13 @@
+// import Share from '../components/Share'
+import { updateAt, resume, world_countries, affected_provinces } from '../data/latest.json'
+import Footer from '../components/Footer'
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 import NumericResumeValue from '../components/NumericResumeValue'
-import TheTable from '../components/TheTable'
-import { updateAt, resume, world_countries } from '../data/latest.json'
-import Footer from '../components/Footer'
-import Share from '../components/Share'
 import SchemeColorSwitcher from '../components/SchemeColorSwitcher'
+import styles from '../styles/Home.module.css'
+import TheTableProv from '../components/TheTableProv'
+import TheTableWorld from '../components/TheTableWorld'
 
 export default function Home() {
   return (
@@ -51,9 +52,12 @@ export default function Home() {
             ))}
           </div>
 
+          <p className={styles.description}>Resumen provincial</p>
+          {/* make a table */}
+          <TheTableProv records={affected_provinces} />
           <p className={styles.description}>Resumen mundial</p>
           {/* make a table */}
-          <TheTable records={world_countries} />
+          <TheTableWorld records={world_countries} />
         </main>
       </div>
       {/* <Share /> */}

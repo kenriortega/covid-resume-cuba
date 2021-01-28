@@ -2,7 +2,7 @@ import { useTable, usePagination, useSortBy } from 'react-table'
 import { useMemo } from 'react'
 import { toDigit } from './NumericResumeValue'
 import styles from '../styles/Table.module.css'
-export default function TheTable({ records }) {
+export default function TheTableWorld({ records }) {
 
 
     const data = useMemo(
@@ -69,7 +69,7 @@ export default function TheTable({ records }) {
         {
             columns,
             data,
-            initialState: { pageIndex: 2 },
+            initialState: { pageIndex: 0 },
         },
         useSortBy,
         usePagination,
